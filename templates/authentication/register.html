@@ -1,0 +1,74 @@
+{% extends 'base_auth.html' %} 
+{% load static %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="card mt-5">
+      
+
+      <div class="card-body">
+      <div class="card-title py-3">
+        <h4>Создайте учетную запись, чтобы пройти тест</h4>
+      </div>  
+        
+        <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        {% include 'messages.html' %}
+          <div class="form-group">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              id="usernameField"
+              value="{{fieldValues.username}}"
+              class="form-control form-contol-sm"
+            />
+          </div>
+          <div class="invalid_feedback invalid-feedback" style="display:none">
+          </div>
+          <p class="text-sm text-success usernameSuccessOutput"></p>
+          <div class="form-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              id="emailField"
+              value="{{fieldValues.email}}"
+              class="form-control form-contol-sm"
+            />
+          </div>
+          <div class="emailFeedbackArea" style="display:none">
+          </div>
+          <p class="text-sm text-success emailSuccessOutput"></p>
+          <div class="form-group">
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              id="passwordField"
+              class="form-control form-contol-sm"
+            />
+            <small class="float-right py-3 showPasswordToggle">Показать пароль</small>
+            <div class="login-url">
+            <span>У вас уже есть аккаунт? </span><a href="{% url 'login' %}">Войти здесь</a>
+            </div>
+          </div>
+          <input type="submit" value="Зарегистрироваться" class="btn btn-block btn-primary submit-btn">
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    <br><br><br><br><br>
+<hr style="height:1px;color:gray;background-color:gray;">
+<footer class="mr-lg-5 mt-3" style="float:right;">
+  <p>Разработано : Turamant</p>
+  <p>GitHub : <a href="https://github.com/turamant/QuizApp" target=_blank>github.com/turamant/QuizApp</a></p>
+</footer>
+  <div class="col-md-4"></div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock content %}
